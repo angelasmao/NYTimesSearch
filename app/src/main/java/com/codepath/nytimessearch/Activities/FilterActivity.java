@@ -44,27 +44,27 @@ public class FilterActivity extends AppCompatActivity {
 
         ArrayList<String> news = filters.getNewsDesks();
         for (int i = 0; i < news.size(); i++) {
-            if (news.get(i).equalsIgnoreCase("food")) {
+            if (news.get(i).equalsIgnoreCase("\"Food\"")) {
                 CheckBox check = ((CheckBox) findViewById(R.id.cbFood));
                 check.setChecked(true);
             }
-            else if (news.get(i).equalsIgnoreCase("arts")) {
+            else if (news.get(i).equalsIgnoreCase("\"Arts\"")) {
                 CheckBox check = ((CheckBox) findViewById(R.id.cbArts));
                 check.setChecked(true);
             }
-            else if (news.get(i).equalsIgnoreCase("sports")) {
+            else if (news.get(i).equalsIgnoreCase("\"Sports\"")) {
                 CheckBox check = ((CheckBox) findViewById(R.id.cbSports));
                 check.setChecked(true);
             }
-            else if (news.get(i).equalsIgnoreCase("fashion")) {
+            else if (news.get(i).equalsIgnoreCase("\"Fashion\"")) {
                 CheckBox check = ((CheckBox) findViewById(R.id.cbFashion));
                 check.setChecked(true);
             }
-            else if (news.get(i).equalsIgnoreCase("science")) {
+            else if (news.get(i).equalsIgnoreCase("\"Science\"")) {
                 CheckBox check = ((CheckBox) findViewById(R.id.cbScience));
                 check.setChecked(true);
             }
-            else if (news.get(i).equalsIgnoreCase("magazine")) {
+            else if (news.get(i).equalsIgnoreCase("\"Magazine\"")) {
                 CheckBox check = ((CheckBox) findViewById(R.id.cbMagazine));
                 check.setChecked(true);
             }
@@ -178,56 +178,57 @@ public class FilterActivity extends AppCompatActivity {
     public void checkCheckboxes() {
         boolean foodchecked = ((CheckBox) findViewById(R.id.cbFood)).isChecked();
         if (foodchecked) {
-            filters.getNewsDesks().add("Food");
-            filters.getNewsDesks().add("Dining");
+            filters.getNewsDesks().add("\"Food\"");
+            filters.getNewsDesks().add("\"Dining\"");
         }
         else {
-            filters.getNewsDesks().remove("Food");
-            filters.getNewsDesks().remove("Dining");
+            filters.getNewsDesks().remove("\"Food\"");
+            filters.getNewsDesks().remove("\"Dining\"");
         }
 
         boolean stchecked = ((CheckBox) findViewById(R.id.cbScience)).isChecked();
         if (stchecked) {
-            filters.getNewsDesks().add("Science");
-            filters.getNewsDesks().add("Technology");
+            filters.getNewsDesks().add("\"Science\"");
+            filters.getNewsDesks().add("\"Technology\"");
         }
         else {
-            filters.getNewsDesks().remove("Science");
-            filters.getNewsDesks().remove("Technology");
+            filters.getNewsDesks().remove("\"Science\"");
+            filters.getNewsDesks().remove("\"Technology\"");
+            Log.d("remove", "removed");
         }
 
         boolean fashionchecked = ((CheckBox) findViewById(R.id.cbFashion)).isChecked();
         if (fashionchecked) {
-            filters.getNewsDesks().add("Fashion");
-            filters.getNewsDesks().add("Style");
+            filters.getNewsDesks().add("\"Fashion\"");
+            filters.getNewsDesks().add("\"Style\"");
         }
         else {
-            filters.getNewsDesks().remove("Fashion");
-            filters.getNewsDesks().remove("Style");
+            filters.getNewsDesks().remove("\"Fashion\"");
+            filters.getNewsDesks().remove("\"Style\"");
         }
 
         boolean magchecked = ((CheckBox) findViewById(R.id.cbMagazine)).isChecked();
         if (magchecked) {
-            filters.getNewsDesks().add("Magazine");
+            filters.getNewsDesks().add("\"Magazine\"");
         }
         else {
-            filters.getNewsDesks().remove("Magazine");
+            filters.getNewsDesks().remove("\"Magazine\"");
         }
 
         boolean artschecked = ((CheckBox) findViewById(R.id.cbArts)).isChecked();
         if (artschecked) {
-            filters.getNewsDesks().add("Arts");
+            filters.getNewsDesks().add("\"Arts\"");
         }
         else {
-            filters.getNewsDesks().remove("Arts");
+            filters.getNewsDesks().remove("\"Arts\"");
         }
 
         boolean sportschecked = ((CheckBox) findViewById(R.id.cbSports)).isChecked();
         if (sportschecked) {
-            filters.getNewsDesks().add("Sports");
+            filters.getNewsDesks().add("\"Sports\"");
         }
         else {
-            filters.getNewsDesks().remove("Sports");
+            filters.getNewsDesks().remove("\"Sports\"");
         }
 
     }

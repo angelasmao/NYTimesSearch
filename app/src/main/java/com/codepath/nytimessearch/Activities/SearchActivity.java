@@ -123,7 +123,14 @@ public class SearchActivity extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                searchQuery(query);
+                //searchQuery(query);
+
+                if (filters.isUpdated()) {
+                    searchQueryFilters(filters);
+                }
+                else {
+                    searchQuery(query);
+                }
 
                 // workaround to avoid issues with some emulators and keyboard devices firing twice if a keyboard enter is used
                 // see https://code.google.com/p/android/issues/detail?id=24599
@@ -167,6 +174,12 @@ public class SearchActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                super.onFailure(statusCode, headers, throwable, errorResponse);
             }
         });
     }
@@ -221,11 +234,13 @@ public class SearchActivity extends AppCompatActivity {
         params.put("page", 0);
         params.put("q", query);
 
+
         //add news desk
         ArrayList<String> news = filters.getNewsDesks();
-        for (int i = 0; i < news.size(); i++) {
-            Log.d("search", news.toString());
-            params.put("news_desk", news.get(i));
+        if (news.size() > 0) {
+            String newsDeskItemsStr = android.text.TextUtils.join(" ", news);
+            String newsDeskParamValue = String.format("news_desk:(%s)", newsDeskItemsStr);
+            params.put("fq", newsDeskParamValue);
         }
 
         //add sort order
@@ -249,6 +264,8 @@ public class SearchActivity extends AppCompatActivity {
 
         //go through all the new filters here
 
+        Log.d("url", url);
+        Log.d("url", params.toString());
         client.get(url, params, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {

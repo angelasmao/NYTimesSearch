@@ -27,9 +27,10 @@ public class ArticleActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Article article = (Article) Parcels.unwrap(getIntent().getParcelableExtra("article"));
+        Article article = Parcels.unwrap(getIntent().getParcelableExtra("article"));
 
         getSupportActionBar().setTitle(article.getHeadline());
+
 
         WebView webView = (WebView) findViewById(R.id.wvArticle);
         webView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
@@ -46,6 +47,8 @@ public class ArticleActivity extends AppCompatActivity {
             }
         });
         webView.loadUrl(article.getWebUrl());
+
+
     }
 
     // Manages the behavior when URLs are loaded
@@ -76,4 +79,5 @@ public class ArticleActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
 
     }
+
 }
